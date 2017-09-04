@@ -10,7 +10,7 @@ public class OrderRequestRetriever {
         OrderItem orderItem = new OrderItem("Shoes", 25.0);
         LocalDateTime date = LocalDateTime.now();
 
-        return new OrderRequest(user, orderItem, 2, date);
+        return new OrderRequest(user, orderItem, date);
     }
 
 }
