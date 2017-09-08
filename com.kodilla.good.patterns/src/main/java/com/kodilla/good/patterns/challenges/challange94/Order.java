@@ -4,20 +4,14 @@ import java.util.Map;
 
 public class Order {
 
-    private Provider provider;
     private Buyer buyer;
     private Map<Product, Integer> orderList;
     private DeliveryService deliveryService;
 
-    public Order(Provider provider, Buyer buyer, Map<Product, Integer> orderList, DeliveryService deliveryService) {
-        this.provider = provider;
+    public Order(Buyer buyer, Map<Product, Integer> orderList, DeliveryService deliveryService) {
         this.buyer = buyer;
         this.orderList = orderList;
         this.deliveryService = deliveryService;
-    }
-
-    public Provider getProvider() {
-        return provider;
     }
 
     public Buyer getBuyer() {

@@ -15,12 +15,12 @@ public class FlightSearch {
 
     public void findAllConnectionsFrom(Airport airport) {
 
-        HashMap<Airport, List<String>> allConnections =
+//        HashMap<Airport, List<String>> allConnections =
         airline.getFlightConnections().entrySet().stream()
                 .filter(entry -> entry.getKey().equals(airport))
                 .map(entry -> entry.getValue())
-                .collect(Collectors.toMap());
-//                .forEach(x -> System.out.println(x));
+//                .collect(Collectors.toMap());
+                .forEach(x -> System.out.println(x));
 
     }
 
@@ -39,11 +39,8 @@ public class FlightSearch {
 
     }
 
-//    public void findConnectedRoute(Airport from, Airport to) {
-//        Boolean hasConnection = (findAllConnectionsFrom(from);)
-//
-//        if
-//
-//
-//    }
+    public void findConnectedRoute(Airport from, Airport to) {
+
+
+    }
 }

@@ -2,9 +2,9 @@ package com.kodilla.good.patterns.challenges.challange94;
 
 public class Adress {
 
-    String street;
-    String zipCode;
-    String city;
+    private String street;
+    private String zipCode;
+    private String city;
 
     public Adress(String street, String zipCode, String city) {
         this.street = street;

@@ -4,9 +4,9 @@ public class ProductOrderProcessor {
 
     private DeliveryService deliveryService;
 
-    public Boolean process(Order order) {
+    public Boolean process(Order order, Provider provider) {
 
-        Provider provider = order.getProvider();
+//        Provider provider = order.getProvider();
         DeliveryService deliveryService = order.getDeliveryService();
 
         Boolean providerCanProcessOrder = provider.getProviderMagazine().orderIsAvailable(order);

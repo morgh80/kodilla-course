@@ -6,9 +6,15 @@ public class Main {
 
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
         Order order = orderRequestRetriever.orderRetrieve();
+        ProviderRetriever providerRetriever = new ProviderRetriever();
+        Provider extraFood = providerRetriever.retrieveExtraFood();
+        Provider healthyShop = providerRetriever.retrieveHealthyShop();
+        Provider glutenFree = providerRetriever.retrieveGlutenFreeShop();
 
         ProductOrderProcessor productOrderProcessor = new ProductOrderProcessor();
-        productOrderProcessor.process(order);
+        productOrderProcessor.process(order,extraFood);
+        productOrderProcessor.process(order,healthyShop);
+        productOrderProcessor.process(order,glutenFree);
 
     }
 
