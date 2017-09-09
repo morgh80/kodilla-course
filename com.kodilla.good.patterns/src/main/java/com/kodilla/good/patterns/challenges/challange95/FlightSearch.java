@@ -1,8 +1,9 @@
 package com.kodilla.good.patterns.challenges.challange95;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FlightSearch {
@@ -13,34 +14,56 @@ public class FlightSearch {
         this.airline = airline;
     }
 
-    public void findAllConnectionsFrom(Airport airport) {
+    public Set<Airport> findAllConnectionsFrom(Airport airport) {
 
-//        HashMap<Airport, List<String>> allConnections =
-        airline.getFlightConnections().entrySet().stream()
-                .filter(entry -> entry.getKey().equals(airport))
-                .map(entry -> entry.getValue())
-//                .collect(Collectors.toMap());
-                .forEach(x -> System.out.println(x));
+        Map<Airport, Map<Airport, List<String>>> flightConnections = airline.getFlightConnections();
+        Set<Airport> connections = new HashSet<>();
+
+        if (flightConnections.containsKey(airport)) {
+            connections = airline.getFlightConnections().get(airport).keySet();
+        }
+
+        return connections;
 
     }
 
-    public void findAllConnectionsTo(Airport airport) {
-        Map<Airport, Map<Airport, List<String>>> airlineConnections = airline.getFlightConnections();
-        airline.getFlightConnections().entrySet().stream()
+    public Set<Airport> findAllConnectionsTo(Airport airport) {
+
+        Set<Airport> airlineConnections = airline.getFlightConnections().entrySet().stream()
                 .map(entry -> {
                             if (entry.getValue().containsKey(airport)) {
                                 return entry.getKey();
                             }
-                    return null;
+                            return null;
                         }
                 )
                 .filter(entry -> entry != null)
-                .forEach(x -> System.out.println(x));
+                .collect(Collectors.toSet());
+
+        return airlineConnections;
 
     }
 
-    public void findConnectedRoute(Airport from, Airport to) {
+    public Set<Airport> findConnectedRoute(Airport origin, Airport destination) {
 
+        Set<Airport> fromSet = findAllConnectionsFrom(origin);
+        Set<Airport> toSet = findAllConnectionsFrom(destination);
+        Set<Airport> connectedFlights = new HashSet<>();
+
+        if (fromSet.contains(destination)) {
+            System.out.println("There is a direct flight");
+        }
+
+        for (Airport fromAirport : fromSet) {
+            if (toSet.contains(fromAirport)) {
+                connectedFlights.add(fromAirport);
+            } else {
+                System.out.println("There are no connected flights from " + origin + " to " + destination);
+            }
+        }
+
+        return connectedFlights;
 
     }
+
 }
