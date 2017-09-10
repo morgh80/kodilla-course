@@ -1,5 +1,6 @@
 package com.kodilla.good.patterns.challenges.challange92;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderRequest {
