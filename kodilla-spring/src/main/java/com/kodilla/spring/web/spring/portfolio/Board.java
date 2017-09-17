@@ -1,5 +1,7 @@
 package com.kodilla.spring.web.spring.portfolio;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Board {
 
     private TaskList toDoList;

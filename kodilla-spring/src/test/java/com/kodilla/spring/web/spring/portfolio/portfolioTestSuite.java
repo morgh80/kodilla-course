@@ -5,17 +5,13 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class portfolioTestSuite {
 
     @Test
-
-    // Nazwa testu zasugerowana przez Kodille sugeruje, że mam przetestować dodawanie tasków ("testTaskAdd()")
-    // Trochę mnie to dziwi, bo w BoardConfig zrozumiałem, że mam wstrzyknąć w Beany konkretne zadania
-    // Czego już w teście w tym kontekście nie ma sensu sprawdzac
-
-    public void testTaskAdd() {
+    public void testAddTaskToList() {
         //Given
         ApplicationContext context = new AnnotationConfigApplicationContext(BoardConfig.class);
         Board board = context.getBean(Board.class);
@@ -26,6 +22,23 @@ public class portfolioTestSuite {
 
         //Then
         Assert.assertTrue(board.getToDoList().getTasks().contains(toDo));
+    }
+
+    @Test
+    public void testIfListContainsTasks() {
+        //Given
+        ApplicationContext context = new AnnotationConfigApplicationContext(BoardConfig.class);
+        Board board = context.getBean(Board.class);
+        List<String> list = new ArrayList<>();
+        list.add("Make laundry");
+        list.add("Iron t-shirts");
+
+        //When
+        board.getInProgressList().addTask("Make laundry");
+        board.getInProgressList().addTask("Iron t-shirts");
+
+        //Then
+        Assert.assertEquals(list, board.getInProgressList().getTasks());
     }
 
 }
