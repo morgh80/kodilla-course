@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 public class LibraryTestSuite {
@@ -12,7 +11,7 @@ public class LibraryTestSuite {
     @Test
     public void testGetBooks() {
         //Given
-        Book testBook1 = new Book("Ogniem", "Henryk",LocalDate.of(1886, 2, 15));
+        Book testBook1 = new Book("Ogniem", "Henryk", LocalDate.of(1886, 2, 15));
         Book testBook2 = new Book("Mieczem", "Sienkiewicz", LocalDate.of(1886, 2, 15));
 
         Library library = new Library("library");
@@ -27,10 +26,10 @@ public class LibraryTestSuite {
     }
 
     @Test
-    public void isShallowCloning() {
+    public void isShallowCloning() throws CloneNotSupportedException {
 
         //Given
-        Book testBook1 = new Book("Ogniem", "Henryk",LocalDate.of(1886, 2, 15));
+        Book testBook1 = new Book("Ogniem", "Henryk", LocalDate.of(1886, 2, 15));
         Book testBook2 = new Book("Mieczem", "Sienkiewicz", LocalDate.of(1886, 2, 15));
 
         Library library = new Library("First Library");
@@ -39,12 +38,8 @@ public class LibraryTestSuite {
         Library clonedLibrary = null;
 
         //When
-        try {
-            clonedLibrary = library.shallowCopy();
-            clonedLibrary.setName("Second Library");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        clonedLibrary = library.shallowCopy();
+        clonedLibrary.setName("Second Library");
 
         //Then
         System.out.println(library);
@@ -55,10 +50,10 @@ public class LibraryTestSuite {
     }
 
     @Test
-    public void isDeepCloning() {
+    public void isDeepCloning() throws CloneNotSupportedException {
 
         //Given
-        Book testBook1 = new Book("Ogniem", "Henryk",LocalDate.of(1886, 2, 15));
+        Book testBook1 = new Book("Ogniem", "Henryk", LocalDate.of(1886, 2, 15));
         Book testBook2 = new Book("Mieczem", "Sienkiewicz", LocalDate.of(1886, 2, 15));
 
         Library library = new Library("First Library");
@@ -67,12 +62,8 @@ public class LibraryTestSuite {
         Library clonedLibrary = null;
 
         //When
-        try {
-            clonedLibrary = library.deepCopy();
-            clonedLibrary.setName("Second Library");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        clonedLibrary = library.deepCopy();
+        clonedLibrary.setName("Second Library");
 
         library.getBooks().remove(testBook2);
 
@@ -84,5 +75,13 @@ public class LibraryTestSuite {
         Assert.assertEquals(2, clonedLibrary.getBooks().size());
     }
 
+//    @Test(expected = CloneNotSupportedException.class)
+//    public void throwsCloneNotSupportedException() throws CloneNotSupportedException {
+//        //given
+//        Library library = new Library("Third Library");
+//        //act
+//        library.clone();
+//
+//    }
 
 }
