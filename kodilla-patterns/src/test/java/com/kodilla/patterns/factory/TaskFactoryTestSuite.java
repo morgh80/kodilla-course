@@ -1,9 +1,14 @@
 package com.kodilla.patterns.factory;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class TaskFactoryTestSuite {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void isExecutingDrivingTask() {
@@ -45,6 +50,20 @@ public class TaskFactoryTestSuite {
 
         //Then
         Assert.assertTrue(paintingTask.isTaskExecuted());
+    }
+
+    @Test
+    public void shouldThrowException() throws IllegalStateException {
+        //Given
+        thrown.expect(IllegalStateException.class);
+        thrown.expectMessage("Task unavailable");
+        TaskFactory taskFactory = new TaskFactory();
+
+        //When
+        Task dumbTask = taskFactory.makeTask("dumbTask");
+
+        //Then
+        Assert.fail("This method should throw SomeException");
     }
 
 }

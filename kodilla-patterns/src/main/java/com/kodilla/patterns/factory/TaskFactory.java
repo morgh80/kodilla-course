@@ -6,7 +6,7 @@ public class TaskFactory {
     public final static String PAINTING_TASK = "PAINTING_TASK";
     public final static String SHOPPING_TASK = "SHOPPING_TASK";
 
-    public final Task makeTask(final String task) {
+    public final Task makeTask(final String task) throws IllegalStateException {
         switch (task) {
             case DRIVING_TASK:
                 return new DrivingTask("drive home", "Warsaw", "bike");
@@ -15,7 +15,7 @@ public class TaskFactory {
             case SHOPPING_TASK:
                 return new ShoppingTask("buy nails", "nails", 2.0);
             default:
-                return null;
+                throw new IllegalStateException("Task unavailable");
         }
     }
 
