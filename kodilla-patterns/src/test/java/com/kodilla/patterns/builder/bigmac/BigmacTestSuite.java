@@ -46,24 +46,24 @@ public class BigmacTestSuite {
         Assert.assertEquals(true, isWithSesame);
     }
 
-    @Test
-    public void testNewBigMacBurgers() {
-        //Given
-        BigMac bigMac = new BigMac.BigmacBuilder()
-                .rollWithSesame(true)
-                .numberOfburgers(2)
-                .ingredient(BigMac.Ingredients.ONION)
-                .souce(BigMac.Souce.THOUSAND_ISLANDS)
-                .build();
-
-        System.out.println(bigMac);
-
-        //When
-        int numberOfBurgers = bigMac.getNumberOfburgers();
-
-        //Then
-        Assert.assertEquals(2, numberOfBurgers);
-    }
+//    @Test
+//    public void testNewBigMacBurgers() {
+//        //Given
+//        BigMac bigMac = aBigmacBuilder()
+//                .withRollWithSesame(true)
+//                .numberOfburgers(2)
+//                .ingredient(BigMac.Ingredients.ONION)
+//                .souce(BigMac.Souce.THOUSAND_ISLANDS)
+//                .build();
+//
+//        System.out.println(bigMac);
+//
+//        //When
+//        int numberOfBurgers = bigMac.getNumberOfburgers();
+//
+//        //Then
+//        Assert.assertEquals(2, numberOfBurgers);
+//    }
 
     @Test
     public void testNewBigMacSouce() {

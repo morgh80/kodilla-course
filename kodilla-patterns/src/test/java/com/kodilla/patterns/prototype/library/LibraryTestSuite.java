@@ -1,12 +1,19 @@
 package com.kodilla.patterns.prototype.library;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
-
+import org.junit.rules.ExpectedException;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 public class LibraryTestSuite {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void testGetBooks() {
@@ -75,13 +82,13 @@ public class LibraryTestSuite {
         Assert.assertEquals(2, clonedLibrary.getBooks().size());
     }
 
-//    @Test(expected = CloneNotSupportedException.class)
-//    public void throwsCloneNotSupportedException() throws CloneNotSupportedException {
-//        //given
-//        Library library = new Library("Third Library");
-//        //act
-//        library.clone();
-//
-//    }
+    @Test(expected = CloneNotSupportedException.class)
+    public void throwsCloneNotSupportedException() throws CloneNotSupportedException {
+        //given
+        Library libraryMock = mock(Library.class);
+        when(libraryMock.shallowCopy()).thenThrow(new CloneNotSupportedException());
+        //then
+        libraryMock.shallowCopy();
+    }
 
 }
